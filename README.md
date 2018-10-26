@@ -11,12 +11,12 @@ use the following dataset:
 
 [Part Affordance Dataset](http://users.umiacs.umd.edu/~amyers/part-affordance-dataset/)
 
-Affordance Detection of Tool Parts from Geometric Features,
-Austin Myers, Ching L. Teo, Cornelia Fermüller, Yiannis Aloimonos.
-International Conference on Robotics and Automation (ICRA). 2015.
+Affordance Detection of Tool Parts from Geometric Features,  
+Austin Myers, Ching L. Teo, Cornelia Fermüller, Yiannis Aloimonos.  
+International Conference on Robotics and Automation (ICRA). 2015.  
 
 # training on Part Affordance Dataset
-please run train.py in the command line after downloading the dataset in 'part-affordance-dataset' directory.
+please `run train.py` in the command line after downloading the dataset in 'part-affordance-dataset' directory.
 
 ```
 python train.py -h
@@ -60,6 +60,38 @@ optional arguments:
                         select your directory to save the result
 ```
 you can choose the model, batch size and so on as you like
+
+
+# predict
+To predict affordance of images in the dataset, run `python predict.py` in the command line.  
+Just like trainig, you can select the parameter, path and so on.
+
+```
+python predict.py -h
+
+usage: predict.py [-h] [--model MODEL] [--params_path PARAMS_PATH]
+                  [--num_images NUM_IMAGES] [--in_channel IN_CHANNEL]
+                  [--n_classes N_CLASSES] [--device DEVICE]
+                  [--result_path RESULT_PATH]
+
+train network for affordance detection
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --model MODEL         available model options => FCN8s/SegNetBasic/UNet
+  --params_path PARAMS_PATH
+                        if you want to use a trained model, input the path of
+                        a file of it
+  --num_images NUM_IMAGES
+                        number of images to predict for segmentation
+  --in_channel IN_CHANNEL
+                        the number of the channel of input images
+  --n_classes N_CLASSES
+                        number of classes in the dataset including background
+  --device DEVICE       the device you'll use (cpu or cuda:0 or so on)
+  --result_path RESULT_PATH
+                        select your directory to save the result
+```
 
 
 # date
