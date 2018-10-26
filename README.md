@@ -2,9 +2,11 @@
 this repository is the implementation to detect affordances of objects with pytorch
 
 # requirements
+* python 3
 * pytorch >= 0.4
 * tensorboardx
-* tqdm
+* scipy, skimage, tqdm
+
 
 # dataset
 use the following dataset:
