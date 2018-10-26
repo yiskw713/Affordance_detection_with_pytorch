@@ -185,7 +185,7 @@ def main():
         model = FCN8s(args.in_channel, args.n_classes)
         
         # for FCN8s, input size is (256, 320). for others, input size is (240, 320)
-        # this is because　input size for FCN8s, which has VGG architecture,
+        # this is because input size for FCN8s, which has VGG architecture,
         # must be a multiple of 32
         class CenterCrop(object):
             def __call__(self, sample):
