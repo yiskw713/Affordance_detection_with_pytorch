@@ -217,7 +217,9 @@ def main():
 
     if args.class_weight:
         criterion = nn.CrossEntropyLoss(weight=class_weight.to(args.device))
-
+    else:
+        criterion = nn.CrossEntropyLoss()
+    
     model.to(args.device)
 
     optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
