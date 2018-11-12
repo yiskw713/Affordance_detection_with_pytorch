@@ -34,7 +34,7 @@ class PartAffordanceDataset(Dataset):
     def __getitem__(self, idx):
         image_path = self.image_class_path.iloc[idx, 0]
         class_path = self.image_class_path.iloc[idx, 1]
-        image = skimage.io.imread(image_path) # read as numpy array
+        image = Image.open(image_path)
         cls = scipy.io.loadmat(class_path)["gt_label"]
         
         sample = {'image': image, 'class': cls}
@@ -67,14 +67,8 @@ def crop_center_pil_image(pil_img, crop_width, crop_height):
 class CenterCrop(object):
     def __call__(self, sample):
         image, cls = sample['image'], sample['class']
-        
-        image = Image.fromarray(np.uint8(image))
-        
-        image = crop_center_pil_image(image, 320, 240)
-        cls = crop_center_numpy(cls, 240, 320)
-        
-        image = np.asarray(image)
-        
+        image = crop_center_pil_image(image, 256, 320)
+        cls = crop_center_numpy(cls, 256, 320)
         return {'image': image, 'class': cls}
 
 
@@ -83,30 +77,26 @@ class CenterCrop(object):
 
 class ToTensor(object):
     def __call__(self, sample):
-        image, cls = sample['image'], sample['class']
         
-        # numpy image: H x W x C
-        # torch image: C X H X W
-        image = image.transpose((2, 0, 1))
-        return {'image': torch.from_numpy(image).float(), 
+        image, cls = sample['image'], sample['class']
+        return {'image': transforms.functional.to_tensor(image).float(), 
                 'class': torch.from_numpy(cls).long()}
 
 
 """ normalize images """
 class Normalize(object):
-    def __init__(self):
-        # mean and std of each channel after centercrop
-        self.mean=[55.8630, 59.9099, 91.7419]
-        self.std=[31.6852, 29.8496, 19.0835]
-    
+    def __init__(self, mean=[55.8630, 59.9099, 91.7419], std=[31.6852, 29.8496, 19.0835]):
+        self.mean = mean
+        self.std = std
+
+
     def __call__(self, sample):
         image, cls = sample['image'], sample['class']
-        
         image = transforms.functional.normalize(image, self.mean, self.std)
-        
         return {'image': image, 'class': cls}
 
 
+    
 """
 if you want to calculate mean and std by yourself, try this code:
 
