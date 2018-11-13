@@ -255,7 +255,7 @@ def main():
                                            'iou of class 6': val_iou[-1][6],
                                            'iou of class 7': val_iou[-1][7]}, epoch)
             
-        print('epoch: {}\tloss: {.5f}\tmean IOU: {.3f}'.format(epoch, train_losses[-1], mean_iou[-1]))
+        print('epoch: {}\tloss: {:.5f}\tmean IOU: {:.3f}'.format(epoch, train_losses[-1], mean_iou[-1]))
         
     torch.save(model.state_dict(), args.result_path +"/final_model.prm")
 
