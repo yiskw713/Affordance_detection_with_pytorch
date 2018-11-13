@@ -57,12 +57,12 @@ def crop_center_numpy(array, crop_height, crop_weight):
                  w//2 - crop_weight//2: w//2 + crop_weight//2
                 ]
 
-def crop_center_pil_image(pil_img, crop_width, crop_height):
-    img_width, img_height = pil_img.size
-    return pil_img.crop(((img_width - crop_width) // 2,
-                         (img_height - crop_height) // 2,
-                         (img_width + crop_width) // 2,
-                         (img_height + crop_height) // 2))
+def crop_center_pil_image(pil_img, crop_height, crop_width):
+    w, h = pil_img.size
+    return pil_img.crop(((w - crop_width) // 2,
+                        (h - crop_height) // 2,
+                        (w + crop_width) // 2,
+                        (h + crop_height) // 2))
 
 class CenterCrop(object):
     def __call__(self, sample):
