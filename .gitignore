@@ -3,4 +3,4 @@ part-affordance-dataset/category_10_fold.txt
 part-affordance-dataset/category_split.txt
 part-affordance-dataset/novel_split.txt
 part-affordance-dataset/tool_categories.txt
-./__pycache__
+__pycache__
