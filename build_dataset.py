@@ -50,6 +50,6 @@ df_test = pd.DataFrame({
 
 all_data = pd.concat([df_train, df_test])
 
-df_train.to_csv('train.csv', index=None)
-df_test.to_csv('test.csv', index=None)
-all_data.to_csv('all_data.csv', index=None)
+df_train.to_csv('./part-affordance-dataset/train.csv', index=None)
+df_test.to_csv('./part-affordance-dataset/test.csv', index=None)
+all_data.to_csv('./part-affordance-dataset/all_data.csv', index=None)

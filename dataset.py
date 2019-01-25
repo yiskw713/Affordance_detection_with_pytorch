@@ -85,7 +85,7 @@ class ToTensor(object):
 
 """ normalize images """
 class Normalize(object):
-    def __init__(self, mean=[55.8630, 59.9099, 91.7419], std=[31.6852, 29.8496, 19.0835]):
+    def __init__(self, mean=[0.2191, 0.2349, 0.3598], std=[0.1243, 0.1171, 0.0748]):
         self.mean = mean
         self.std = std
 

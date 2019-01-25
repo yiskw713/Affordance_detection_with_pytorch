@@ -71,8 +71,8 @@ args = get_arguments()
 
 """ visulalization """
 # mean and std of each channel after centercrop
-mean=[55.8630, 59.9099, 91.7419]
-std=[31.6852, 29.8496, 19.0835]
+mean=[0.2191, 0.2349, 0.3598]
+std=[0.1243, 0.1171, 0.0748]
 
 def reverse_normalize(x, mean, std):
     x[:, 0, :, :] = x[:, 0, :, :] * std[0] + mean[0]
@@ -83,14 +83,14 @@ def reverse_normalize(x, mean, std):
 
 # assign the colors to each class
 colors = torch.tensor([[0, 0, 0],         # class 0 'background'  black
-                       [255, 0, 0],       # class 1 'grasp'       red
-                       [255, 255, 0],     # class 2 'cut'         yellow
-                       [0, 255, 0],       # class 3 'scoop'       green
-                       [0, 255, 255],     # class 4 'contain'     sky blue
-                       [0, 0, 255],       # class 5 'pound'       blue
-                       [255, 0, 255],     # class 6 'support'     purple
-                       [255, 255, 255]    # class 7 'wrap grasp'  white
-                      ])
+                        [255, 0, 0],       # class 1 'grasp'       red
+                        [255, 255, 0],     # class 2 'cut'         yellow
+                        [0, 255, 0],       # class 3 'scoop'       green
+                        [0, 255, 255],     # class 4 'contain'     sky blue
+                        [0, 0, 255],       # class 5 'pound'       blue
+                        [255, 0, 255],     # class 6 'support'     purple
+                        [255, 255, 255]    # class 7 'wrap grasp'  white
+                        ])
 
 # convert class prediction to the mask
 def class_to_mask(cls):
@@ -111,7 +111,7 @@ def predict(model, sample, device='cpu'):
 
     with torch.no_grad():
         _, y_pred = model(x).max(1)    # y_pred.shape => (N, 240, 320)
-    
+
     true_mask = class_to_mask(y).to('cpu')
     pred_mask = class_to_mask(y_pred).to('cpu')
     
@@ -172,7 +172,7 @@ if __name__ == '__main__':
 
         x = sample["image"]
         x = reverse_normalize(x, mean, std)
-        save_image(x/255, args.result_path + '/' + 'original_images_with_' + args.model + '.jpg')
+        save_image(x, args.result_path + '/' + 'original_images_with_' + args.model + '.jpg')
         
         break
 
