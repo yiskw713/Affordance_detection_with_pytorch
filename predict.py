@@ -173,7 +173,7 @@ if __name__ == '__main__':
         x = sample["image"]
         x = reverse_normalize(x, mean, std)
         save_image(x, args.result_path + '/' + 'original_images_with_' + args.model + '.jpg')
-        
+
         break
 
 
