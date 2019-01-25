@@ -4,3 +4,4 @@ part-affordance-dataset/category_split.txt
 part-affordance-dataset/novel_split.txt
 part-affordance-dataset/tool_categories.txt
 __pycache__
+.DS_Store
