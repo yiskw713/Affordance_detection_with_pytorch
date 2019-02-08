@@ -5,7 +5,7 @@ import torchvision
 
 
 """
-for the details of FCN8s, please refer to this paper:
+for the details of UNet, please refer to this paper:
 
 Ronneberger, O., Fischer, P., & Brox, T. (2015). 
 U-net: Convolutional networks for biomedical image segmentation. 
